@@ -74,8 +74,8 @@ Please enter the number(s) of the docset(s) to index (comma-separated) or 'all' 
 
 Note that indexing may take awhile, especially with larger docsets.
 
-Once you're done creating your index, launch your project with: 
+Once you're done creating your index, launch your project with:
 
 ```bash
-poetry run langchain serve
+poetry run uvicorn app.server:app --reload
 ```
