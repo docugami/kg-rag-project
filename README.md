@@ -1,14 +1,28 @@
 # KG-RAG Project
 
-## Installation
+## Setup
 
-Install the LangChain CLI if you haven't yet
+We heavily recommend creating a [virtual environment](https://github.com/pypa/virtualenv) when working with our project.
+
+After creating your virtual environment, you can install dependencies by running:
 
 ```bash
-pip install -U langchain-cli
+poetry install
 ```
 
-## Adding packages
+We also require you to set environment variables in order to use our tools. You will also need your Docugami API key, OpenAI API key, and a Pinecone API key.
+
+```bash
+export DG_ENVIRONMENT=Production
+export DOCUGAMI_API_KEY=...
+
+export OPENAI_API_KEY=...
+
+export ENVIRONMENT=...
+export PINECONE_API_KEY=...
+```
+
+## Adding more packages
 
 ```bash
 # adding packages from 
@@ -42,8 +56,26 @@ export LANGCHAIN_API_KEY=<your-api-key>
 export LANGCHAIN_PROJECT=<your-project>  # if not specified, defaults to "default"
 ```
 
-## Launch LangServe
+## Running the project
+
+Before the project can work, you'll have to index your Docugami docsets.
 
 ```bash
-langchain serve
+poetry run index
+
+1: Corporate Charters (ID: d6aubexzhf5c)
+2: Customer Calls (ID: j3ms43eg302p)
+3: Earnings Calls (ID: f46vx4fcmxac)
+4: Industry Calls (ID: mew6i8bsxuaz)
+5: Investor Presentations (ID: h2dih9yl1uqs)
+
+Please enter the number(s) of the docset(s) to index (comma-separated) or 'all' to index all docsets:
+```
+
+Note that indexing may take awhile, especially with larger docsets.
+
+Once you're done creating your index, launch your project with: 
+
+```bash
+poetry run langchain serve
 ```
